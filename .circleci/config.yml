@@ -6,7 +6,7 @@ jobs:
       - image: node:20
     resource_class: large
     parallelism: 10
-    working_directory: ~/project/src
+    working_directory: ./src
 
     steps:
       - checkout
