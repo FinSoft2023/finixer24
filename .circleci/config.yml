@@ -6,6 +6,7 @@ jobs:
       - image: node:20
     resource_class: large
     parallelism: 10
+    working_directory: ~/src
 
     steps:
       - checkout
@@ -22,7 +23,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            cd src
             pnpm install
       - save_cache:
           name: Save pnpm Package Cache
@@ -32,7 +32,6 @@ jobs:
       - run:
           name: Build
           command: |
-            cd src
             pnpm nx build facingweb
 
 # Orchestrate jobs using workflows
