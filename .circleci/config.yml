@@ -22,6 +22,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
+            cd src
             pnpm install
       - save_cache:
           name: Save pnpm Package Cache
