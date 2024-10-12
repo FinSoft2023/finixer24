@@ -6,14 +6,13 @@ jobs:
       - image: node:20
     resource_class: large
     parallelism: 10
-    working_directory: ./src
 
     steps:
       - checkout
       - restore_cache:
           name: Restore pnpm Package Cache
           keys:
-            - pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+            - pnpm-packages-{{ checksum "src/pnpm-lock.yaml" }}
       - run:
           name: Install pnpm package manager
           command: |
@@ -23,15 +22,17 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
+            cd src
             pnpm install
       - save_cache:
           name: Save pnpm Package Cache
-          key: pnpm-packages-{{ checksum "pnpm-lock.yaml" }}
+          key: pnpm-packages-{{ checksum "src/pnpm-lock.yaml" }}
           paths:
             - .pnpm-store
       - run:
           name: Build
           command: |
+            cd src
             pnpm nx build facingweb
 
 # Orchestrate jobs using workflows
