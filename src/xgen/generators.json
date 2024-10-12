@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "plain": {
+      "factory": "./src/generators/plain/generator",
+      "schema": "./src/generators/plain/schema.json",
+      "description": "plain generator"
+    }
+  }
+}
